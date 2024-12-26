@@ -8,6 +8,12 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <!-- Background video depending on the weather type -->
+    <video autoplay muted loop class="background-video" id="bg-video">
+        <!-- Default video as fallback -->
+        <source src="default.mp4" type="video/mp4">
+    </video>
+
     <div class="container">
         <h1>Weather Prediction</h1>
         <form action="https://your-pythonanywhere-url.com/predict" method="POST">
@@ -32,12 +38,9 @@
         </div>
     </div>
 
-    <!-- Optionally, include a background video -->
-    <video autoplay muted loop class="background-video">
-        <source src="background-video.mp4" type="video/mp4">
-    </video>
+    <img src="bg.png" alt="Background Image" class="background-image">
 
-    <!-- Optional script for dynamic behavior -->
+    <!-- Optional script for dynamic behavior, e.g., changing video based on prediction -->
     <script src="script.js"></script>
 </body>
 </html>
