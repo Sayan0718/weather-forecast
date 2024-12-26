@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="video-container" id="weather-video">
+        <video autoplay muted loop id="video-bg">
+            <source src="{{ url_for('static', filename='default.mp4') }}" type="video/mp4" id="video-source">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="container">
+        <h1>Weather Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="precipitation">Precipitation:</label>
+            <input type="number" step="0.1" name="precipitation" required>
+
+            <label for="temp_max">Max Temperature:</label>
+            <input type="number" step="0.1" name="temp_max" required>
+
+            <label for="temp_min">Min Temperature:</label>
+            <input type="number" step="0.1" name="temp_min" required>
+
+            <label for="wind">Wind Speed:</label>
+            <input type="number" step="0.1" name="wind" required>
+
+            <button type="submit">Predict Weather</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction">
+            <h2>Predicted Weather: {{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const prediction = "{{ prediction }}";
+            const videoSource = document.getElementById("video-source");
+
+            // Set video source based on the prediction
+            switch (prediction) {
+                case "Drizzle":
+                    videoSource.src = "{{ url_for('static', filename='drizzle.mp4') }}";
+                    break;
+                case "Fog":
+                    videoSource.src = "{{ url_for('static', filename='fog.mp4') }}";
+                    break;
+                case "Rain":
+                    videoSource.src = "{{ url_for('static', filename='rain.mp4') }}";
+                    break;
+                case "Snow":
+                    videoSource.src = "{{ url_for('static', filename='snow.mp4') }}";
+                    break;
+                case "Sun":
+                    videoSource.src = "{{ url_for('static', filename='sun.mp4') }}";
+                    break;
+                default:
+                    videoSource.src = "{{ url_for('static', filename='default.mp4') }}";
+            }
+
+            document.getElementById("video-bg").load(); // Reload the video
+        });
+    </script>
+</body>
+</html>
