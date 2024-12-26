@@ -11,9 +11,10 @@ body {
     background-color: #f0f8ff;
     color: #333;
     line-height: 1.6;
+    position: relative;
 }
 
-/* Add styles for the background video if desired */
+/* Style the background video */
 .background-video {
     position: fixed;
     top: 0;
@@ -24,6 +25,17 @@ body {
     z-index: -1;
 }
 
+/* Style for background image */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2; /* Ensure the background image is beneath the video */
+}
+
 .container {
     max-width: 600px;
     margin: 20px auto;
@@ -31,6 +43,7 @@ body {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
 h1 {
